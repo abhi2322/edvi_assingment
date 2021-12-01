@@ -51,3 +51,23 @@
   color:#a02020;
   background-color:#ffe0e0e0;
 }
+
+
+.sortOp{
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  align-items: center;
+}
+
+.btnSort{
+  background-color: white;
+  border:0;
+  margin:1rem;
+  cursor: pointer;
+}
+
+.selected{
+  border-bottom: 3px solid #2874f0;
+  color:#2874f0;
+}
