@@ -1,55 +1,33 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
-import Cards from './components/Cards';
-import ErrorBox from './components/ErrorBox';
+import {useCallback, useState} from 'react';
 import './App.css'
+import DashBoard from './components/DashBoard';
+import SortBar from './components/SortBar';
+import { AppContext } from './context';
 
 function App() {
   const [cards,setCards]=useState([]);
-  const [error,setError]=useState("");
-  const [btnAsc,setBtnAsc]=useState(false)
-  const [btnDsc,setBtnDsc]=useState(false)
-  const handelSortAscend=()=>{
-    setCards([...cards].sort((a,b)=>{return a.price-b.price}))
-    setBtnAsc(true)
-    setBtnDsc(false)
-  }
-  const handelSortDscend=()=>{
-    setCards([...cards].sort((a,b)=>{return a.price-b.price}))
-    setCards([...cards].reverse())
-    setBtnAsc(false)
-    setBtnDsc(true)
-  }
-  useEffect(()=>{
-    axios.get('https://fakestoreapi.com/products')
-    .then((response)=>{
-      setCards(cards=>[...cards,...response.data])
-    })
-    .catch((err)=>{
-      console.log(err)
-      setError("Data cannot be fetched");
-    })
+  const dispatchCardEvent=useCallback((actionType,payload)=>{
+    switch(actionType){
+          case 'Add_CARDS':
+                    setCards(cards=>[...cards,...payload.Newcards])
+                    return
+          case 'SET_ASCENDING':
+                    setCards(cards=>[...cards].sort((a,b)=>{return a.price-b.price}))
+                    return
+          case 'SET_DSCENDING':
+                    setCards(cards=>[...cards].sort((a,b)=>{return a.price-b.price}))
+                    setCards(cards=>[...cards].reverse())
+                    return
+          default:
+            return
+    }
   },[])
   return (
           <div>
-              <div className="sortOp">
-                <h3>Sort By: </h3>
-                <button onClick={handelSortAscend} className={`btnSort ${btnAsc?" selected":null}`}>Price:low-high</button>
-                <button onClick={handelSortDscend} className={`btnSort ${btnDsc?" selected":null}`}>Price:high-low</button>
-              </div>
-              <div className="DashBoard">
-                  {error!==""?<ErrorBox error={error}/>:null}
-                  {cards.length!==0?
-                  cards.map((card)=>{
-                    return(
-                      <Cards
-                        key={card.id}
-                        data={card}
-                      />
-                    )
-                  })
-                  :null}
-              </div>
+              <AppContext.Provider value={{cards,dispatchCardEvent}}>
+                  <SortBar/>
+                  <DashBoard/>
+              </AppContext.Provider>
         </div>
   );
 }
