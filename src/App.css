@@ -1,0 +1,53 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.cardBox{
+  width: 300px;
+  margin: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 20px 20px 40px lightgray;
+  border-radius: 5px;
+}
+
+.productImage{
+  object-fit: cover;
+}
+
+.DashBoard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cardPrice{
+  text-align: right;
+  margin: 0.5rem;
+  color:#ff37dd;
+}
+
+.cardTitle{
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.cardDescription{
+  text-align: center;
+  margin: 0.5rem;
+  font-size: 0.78rem;
+  color:#7e7d7d;
+}
+
+.errorBox{
+  padding: 1rem;
+  border :0.1rem solid transparent;
+  border-radius:0.5rem;
+  color:#a02020;
+  background-color:#ffe0e0e0;
+}
