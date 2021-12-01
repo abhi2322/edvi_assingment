@@ -7,6 +7,10 @@ import './App.css'
 function App() {
   const [cards,setCards]=useState([]);
   const [error,setError]=useState("");
+  const handelSort=()=>{
+    setCards([...cards].sort((a,b)=>{return a.price-b.price}))
+    console.log(cards)
+  }
   useEffect(()=>{
     axios.get('https://fakestoreapi.com/products')
     .then((response)=>{
@@ -20,6 +24,7 @@ function App() {
   },[])
   return (
     <div className="DashBoard">
+        <button onClick={handelSort}>Sort</button>
         {error!==""?<ErrorBox error={error}/>:null}
         {cards.length!==0?
         cards.map((card)=>{
