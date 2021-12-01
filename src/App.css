@@ -2,7 +2,15 @@
   margin: 0;
   padding: 0;
 }
+/*Dasboard*/
+.DashBoard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
 
+/*card*/
 .cardBox{
   width: 300px;
   margin: 0.3rem;
@@ -12,16 +20,8 @@
   box-shadow: 20px 20px 40px lightgray;
   border-radius: 5px;
 }
-
 .productImage{
   object-fit: cover;
-}
-
-.DashBoard{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .cardPrice{
@@ -44,6 +44,7 @@
   color:#7e7d7d;
 }
 
+/*error box*/
 .errorBox{
   padding: 1rem;
   border :0.1rem solid transparent;
@@ -53,6 +54,7 @@
 }
 
 
+/*sort buttons*/
 .sortOp{
   display: flex;
   justify-content: flex-start;
